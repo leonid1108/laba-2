@@ -1,0 +1,89 @@
+import math
+
+file = open('text.txt')
+sequence = file.readline()
+count, even_num, odd_num  = 0, 0, 0
+len_seq = len(sequence)
+
+# ПОИСК ВСЕХ ЧЁТНЫХ И НЕЧЁТНЫХ ЦИФР В ПОСЛЕДОВАТЕЛЬНОСТИ
+for i in range(len(sequence)):
+    if sequence[i] == " ":
+        continue
+    if (int(sequence[i])) % 2 == 0:
+        even_num += 1
+        count += 1
+    else:
+        odd_num += 1
+        count += 1
+print("Чётных цифр ==>", round((((even_num * 100) / count)), 1), "%")
+print("Нечётных цифр ==>", round((((odd_num * 100) / count)), 1), "%\n")
+count, even_num, odd_num  = 0, 0, 0
+
+# ПОИСК ВСЕХ ЧЁТНЫХ И НЕЧЁТНЫХ ЧИСЕЛ В ПОСЛЕДОВАТЕЛЬНОСТИ
+for i in range(len(sequence)):
+    if sequence[i] == " ":
+        if int(sequence[i - 1]) % 2 == 0:
+            count += 1
+            even_num += 1
+        else:
+            count += 1
+            odd_num += 1
+if (int(sequence[-1])) % 2 == 0:
+    count += 1
+    even_num += 1
+else:
+    count += 1
+    odd_num += 1
+print("Чётных чисел ==>", round((((even_num * 100) / count)), 1), "%")
+print("Нечётных чисел ==>", round((((odd_num * 100) / count)), 1), "%\n")
+count = 0
+
+# ОПРЕДЕЛЕНИЕ ДЛИНЫ ПОСЛЕДНЕГО ЧИСЛА
+l = 0
+for i in range(1,len(sequence)+1):
+    if sequence[-i] != " ":
+        l += 1
+    else:
+        break
+
+# ДОБАВЛЕНИЕ ПЕРВОГО ЧИСЛА В МАССИВ
+main_mas = []
+p = 0
+for i in range(len(sequence)):
+    if sequence[i] != " ":
+        p += 1
+    else:
+        main_mas.append(sequence[i - p:i])
+        break
+
+# ДОБАВЛЕНИЕ ВСЕХ ЧИСЕЛ В МАССИВ, КРОМЕ 1-ГО И ПОСЛЕДНЕГО ЭЛЕМЕНТА
+for i in range(len(sequence) - l - 1):
+    n = 1
+    j = 1
+    if sequence[i] == " ":
+        while sequence[i + j] != " ":
+            n += 1
+            j += 1
+        main_mas.append(sequence[i + 1:i + n])
+
+# ДОБАВЛЕНИЕ ПОСЛЕДНЕГО ЧИСЛА В ПОСЛЕДОВАТЕЛЬНОСТИ
+main_mas.append(sequence[len_seq-l:len_seq])
+# print(main_mas)
+
+# АЛГОРИТМ ПОИСКА ВСЕХ ПРОСТЫХ ЧИСЕЛ В ПОСЛЕДОВАТЕЛЬНОСТИ
+simple_num, not_simple_num = 0, 0
+for i in range(0, len(main_mas)):
+    k = 0
+    for j in range(2, (int(main_mas[i]) // 2) + 1):
+        if (int(main_mas[i])) % j == 0:
+            k += 1
+    if k <= 0:
+        # print("Число {} простое".format(a[i]))
+        count += 1
+        simple_num += 1
+    else:
+        # print("Число {} не является простым".format(a[i]))
+        count += 1
+        not_simple_num += 1
+print("Простых чисел ==>", round(((simple_num * 100) / count), 1), "%")
+print("Непростых чисел ==>", round(((not_simple_num * 100) / count), 1), "%")
