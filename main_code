@@ -3,6 +3,7 @@ import math
 with open('text.txt','r') as file:
     sequence = file.read()
 count, even_num, odd_num  = 0, 0, 0
+main_mass = list(map(int, sequence.split(" ")))
 
 # ПОИСК ВСЕХ ЧЁТНЫХ И НЕЧЁТНЫХ ЦИФР В ПОСЛЕДОВАТЕЛЬНОСТИ
 for i in range(len(sequence)):
@@ -37,43 +38,12 @@ print("Чётных чисел ==>", round((((even_num * 100) / count)), 1), "%"
 print("Нечётных чисел ==>", round((((odd_num * 100) / count)), 1), "%\n")
 count = 0
 
-# ОПРЕДЕЛЕНИЕ ДЛИНЫ ПОСЛЕДНЕГО ЧИСЛА
-l = 0
-for i in range(1,len(sequence)+1):
-    if sequence[-i] != " ":
-        l += 1
-    else:
-        break
-
-# ДОБАВЛЕНИЕ ПЕРВОГО ЧИСЛА В МАССИВ
-main_mas = []
-p = 0
-for i in range(len(sequence)):
-    if sequence[i] != " ":
-        p += 1
-    else:
-        main_mas.append(sequence[i - p:i])
-        break
-
-# ДОБАВЛЕНИЕ ВСЕХ ЧИСЕЛ В МАССИВ, КРОМЕ 1-ГО И ПОСЛЕДНЕГО ЭЛЕМЕНТА
-for i in range(len(sequence) - l - 1):
-    n = 1
-    j = 1
-    if sequence[i] == " ":
-        while sequence[i + j] != " ":
-            n += 1
-            j += 1
-        main_mas.append(sequence[i + 1:i + n])
-
-# ДОБАВЛЕНИЕ ПОСЛЕДНЕГО ЧИСЛА В ПОСЛЕДОВАТЕЛЬНОСТИ
-main_mas.append(sequence[(len(sequence))-l:(len(sequence))])
-
 # АЛГОРИТМ ПОИСКА ВСЕХ ПРОСТЫХ ЧИСЕЛ В ПОСЛЕДОВАТЕЛЬНОСТИ
 simple_num, not_simple_num = 0, 0
-for i in range(0, len(main_mas)):
+for i in range(0, len(main_mass)):
     k = 0
-    for j in range(2, (int(main_mas[i]) // 2) + 1):
-        if (int(main_mas[i])) % j == 0:
+    for j in range(2, (int(main_mass[i]) // 2) + 1):
+        if (int(main_mass[i])) % j == 0:
             k += 1
     if k <= 0:
         count += 1
