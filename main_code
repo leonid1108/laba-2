@@ -3,7 +3,6 @@ import math
 with open('text.txt','r') as file:
     sequence = file.read()
 count, even_num, odd_num  = 0, 0, 0
-len_seq = len(sequence)
 
 # ПОИСК ВСЕХ ЧЁТНЫХ И НЕЧЁТНЫХ ЦИФР В ПОСЛЕДОВАТЕЛЬНОСТИ
 for i in range(len(sequence)):
@@ -67,8 +66,7 @@ for i in range(len(sequence) - l - 1):
         main_mas.append(sequence[i + 1:i + n])
 
 # ДОБАВЛЕНИЕ ПОСЛЕДНЕГО ЧИСЛА В ПОСЛЕДОВАТЕЛЬНОСТИ
-main_mas.append(sequence[len_seq-l:len_seq])
-# print(main_mas)
+main_mas.append(sequence[(len(sequence))-l:(len(sequence))])
 
 # АЛГОРИТМ ПОИСКА ВСЕХ ПРОСТЫХ ЧИСЕЛ В ПОСЛЕДОВАТЕЛЬНОСТИ
 simple_num, not_simple_num = 0, 0
@@ -78,11 +76,9 @@ for i in range(0, len(main_mas)):
         if (int(main_mas[i])) % j == 0:
             k += 1
     if k <= 0:
-        # print("Число {} простое".format(a[i]))
         count += 1
         simple_num += 1
     else:
-        # print("Число {} не является простым".format(a[i]))
         count += 1
         not_simple_num += 1
 print("Простых чисел ==>", round(((simple_num * 100) / count), 1), "%")
