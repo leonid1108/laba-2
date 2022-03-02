@@ -1,7 +1,7 @@
 import math
 
-file = open('text.txt')
-sequence = file.readline()
+with open('text.txt','r') as file:
+    sequence = file.read()
 count, even_num, odd_num  = 0, 0, 0
 len_seq = len(sequence)
 
