@@ -14,7 +14,7 @@ mass_number = []
 mass_digit = []
 count_1, count_2, count_3 = 0, 0, 0
 even_number, odd_number = 0, 0
-even_digit, odd_digit = 0, 0,
+even_digit, odd_digit = 0, 0
 simple_digit, not_simple_digit = 0, 0
 try:
     start = time.time()
