@@ -4,10 +4,12 @@
 
 import os
 import time
-import main2
+import cProfile
 
 def is_simple_number(x):
     divider = 2
+    if x == 0:
+        return False
     while divider < (x**0.5):
         if x % divider == 0:
             return False
@@ -60,7 +62,7 @@ def task():
                     mass_number.append(symbol)
                     index += 1
                     if symbol == " ": # Алгоритм поиска кол-ва чётных и нечётных ЧИСЕЛ
-                        if int(mass_number[index-1]) % 2 == 0:
+                        if int(mass_number[index-1]) % 2 == 0 :
                             even_digit += 1
                         else:
                             odd_digit += 1
@@ -71,20 +73,25 @@ def task():
                         odd_number += 1
                     symbol = file.read(symbol_len) # Читаем следующий символ
 
+
             print(f"Program time:{time.time()-start} seconds.")
+        try:
+            print("Чётных цифр ==>", round((((even_number * 100) / (even_number+odd_number))), 1), "%")
+            print("Нечётных цифр ==>", round((((odd_number * 100) / (even_number+odd_number))), 1), "%\n")
 
-        print("Чётных цифр ==>", round((((even_number * 100) / (even_number+odd_number))), 1), "%")
-        print("Нечётных цифр ==>", round((((odd_number * 100) / (even_number+odd_number))), 1), "%\n")
+            print("Чётных чисел ==>", round((((even_digit * 100) / (even_digit+odd_digit))), 1), "%")
+            print("Нечётных чисел ==>", round((((odd_digit * 100) / (even_digit+odd_digit))), 1), "%\n")
 
-        print("Чётных чисел ==>", round((((even_digit * 100) / (even_digit+odd_digit))), 1), "%")
-        print("Нечётных чисел ==>", round((((odd_digit * 100) / (even_digit+odd_digit))), 1), "%\n")
-
-        print("Простых чисел ==>", round(((simple_digit * 100) / (simple_digit+not_simple_digit)), 1), "%")
-        print("Непростых чисел ==>", round(((not_simple_digit * 100) /(simple_digit+not_simple_digit) ), 1), "%")
+            print("Простых чисел ==>", round(((simple_digit * 100) / (simple_digit+not_simple_digit)), 1), "%")
+            print("Непростых чисел ==>", round(((not_simple_digit * 100) /(simple_digit+not_simple_digit) ), 1), "%")
+        except ZeroDivisionError:
+            print("Происходит деление на ноль.. ")
 
     except FileNotFoundError:
         print("\nФайл text.txt в директории проекта не обнаружен.")
 
 def main():
     task()
-main()
+
+if __name__ == '__main__':
+    cProfile.run('main()')
