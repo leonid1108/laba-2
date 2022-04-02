@@ -30,7 +30,8 @@ def task():
     simple_digit, not_simple_digit = 0, 0
     try:
         start = time.time()
-        with open("text.txt", "r") as file: # Открытие файла
+        with open("text.txt", "r+") as file: # Открытие файла
+            file.write(" ")
             symbol = file.read(symbol_len) # Читаем первый символ
 
             if not symbol:            # Обработка исключения пустого файла
