@@ -2,7 +2,6 @@
 выводит на экран его характеристики в процентном соотношении:
 чётных и нечётных цифр, чётных и нечётных чисел и простых чисел. """
 
-import os
 import time
 import cProfile
 
@@ -31,7 +30,7 @@ def task():
     try:
         start = time.time()
         with open("text.txt", "r+") as file: # Открытие файла
-            file.write(" ")
+            file.write(" ") # Добавляем в конце файла пробел 
             symbol = file.read(symbol_len) # Читаем первый символ
 
             if not symbol:            # Обработка исключения пустого файла
