@@ -84,7 +84,7 @@ def task():
             print("Простых чисел ==>", round(((simple_digit * 100) / (simple_digit+not_simple_digit)), 1), "%")
             print("Непростых чисел ==>", round(((not_simple_digit * 100) /(simple_digit+not_simple_digit) ), 1), "%")
         except ZeroDivisionError:
-            print("Происходит деление на ноль..\nИли в файле нет чисел.. ")
+            print("Происходит деление на ноль...\nИли в файле нет чисел... ")
 
     except FileNotFoundError:
         print("\nФайл text.txt в директории проекта не обнаружен.")
