@@ -95,4 +95,4 @@ def main():
 if __name__ == '__main__':
     cProfile.run("main()")
     process = psutil.Process(os.getpid())
-    print(f"{(process.memory_info().rss)/(8*10**6)} MB")
+    print(f"{(process.memory_info().rss)/(2**20)} MB")
